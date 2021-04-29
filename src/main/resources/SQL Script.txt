@@ -1,0 +1,21 @@
+create schema tribble;
+
+drop table if exists labs;
+create table tribble.labs (
+	lab_id serial,
+	name varchar(255) not null,
+	primary key (lab_id)
+);
+
+drop table if exists tribbles;
+create table tribble.tribbles (
+	tribble_id serial,
+	name varchar(255) not null,
+	lab_id int not null,
+	primary key (tribble_id),
+	foreign key (lab_id) references tribble.labs(lab_id) on delete cascade
+
+);
+
+select * from tribble.tribbles;
+select * from tribble.labs;
